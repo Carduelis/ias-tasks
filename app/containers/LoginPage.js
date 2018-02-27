@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
+// import { observable } from 'mobx';
 // import { connect } from 'react-redux';
 import MdArrowForward from 'react-icons/lib/md/arrow-forward';
 // import { GOOGLE_API_KEY, BACKEND_ROOT } from '../constants';
 // import Loader from '../components/Loader';
 // import Input from '../components/Input';
 import Button from '../components/Button';
-import { Todo, User } from '../models';
+import { User } from '../models';
 
+@inject('store')
 @observer
 class LoginPage extends Component {
 	componentDidMount() {}
 	render() {
+		const { store } = this.props;
 		const btnProps = {
 			label: 'Continue',
 			size: 'lg',
 			styles: ['white'],
 			handleClick: e => {
-				alert('Hello world!');
 				console.log(e);
+				const { bookStore } = store;
+				bookStore.markLoading(!bookStore.isLoading);
 			}
 		};
 		console.log(this.props);
@@ -40,10 +44,12 @@ class LoginPage extends Component {
 							}}
 							className="input"
 							type="text"
-							value={this}
+							defaultValue={this}
 							placeholder="Your name"
 						/>
-						<span className="help-text">Type your name</span>
+						<span className="help-text">
+							{store.bookStore.isLoading.toString()}
+						</span>
 					</div>
 					<Button {...btnProps}>
 						<span className="arrow">
