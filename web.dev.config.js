@@ -1,10 +1,10 @@
 const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+/* eslint-enable import/no-extraneous-dependencies */
 const manifest = require('./config/manifest');
-
 module.exports = {
 	devServer: {
 		// this is to forcing reload while index.ejs is changed
@@ -23,10 +23,16 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, './public'),
 		filename: 'bundle.js',
+		// web-dev requires simple slash `/` unless web-bundle, it needs dot-slash `./`
 		publicPath: '/'
 	},
 	module: {
 		rules: [
+			{
+				// for the external css files
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader?sourceMap']
+			},
 			{
 				test: /\.less$/,
 				use: ['style-loader', 'css-loader?sourceMap', 'less-loader?sourceMap']
@@ -52,13 +58,23 @@ module.exports = {
 				]
 			},
 			{
+				test: /\.(jpe?g|png|gif|svg)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: { limit: 5000 }
+					},
+					'image-webpack-loader'
+				]
+			},
+			{
 				test: /\.json$/,
 				use: ['json-loader']
 			}
 		]
 	},
 	plugins: [
-		new DashboardPlugin(),
+		// new DashboardPlugin(),
 		new HtmlWebpackPlugin({
 			title: manifest.name,
 			template: path.join(__dirname, './app/index.ejs'),
