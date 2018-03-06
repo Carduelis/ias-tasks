@@ -1,0 +1,21 @@
+@size: 180px;
+body {
+	background: #fff;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		height: @size;
+		background-image: url('../../assets/images/header_background.png');
+		background-repeat: no-repeat;
+		background-position: top center;
+		filter: blur(0px) grayscale(50%) sepia(20%);
+		width: 100%;
+		left: 0;
+		display: block;
+	}
+}
+
+#root {
+	margin-top: @size;
+}
