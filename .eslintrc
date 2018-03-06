@@ -25,7 +25,7 @@
       // disable rules from base configurations
       "no-console": "off",
       'arrow-body-style': ['error', 'as-needed'],
-      'arrow-spacing': ['error', { before: true, after: true }],
+      'arrow-spacing': [1, { before: true, after: true }],
       'no-duplicate-imports': 'error',
       'no-useless-constructor': 'error',
       'no-useless-rename': ['error', {
