@@ -41,7 +41,7 @@ export default class Button extends Component {
 					{props.icon}
 					{props.loading && <span className="loading-bar" />}
 					{props.label &&
-						<span className="label">
+						<span className="btn-label">
 							{props.label}
 						</span>}
 					{props.children}
@@ -59,7 +59,7 @@ export default class Button extends Component {
 					{props.icon}
 					{props.loading && <span className="loading-bar" />}
 					{props.label &&
-						<span className="label">
+						<span className="btn-label">
 							{props.label}
 						</span>}
 					{props.children}
