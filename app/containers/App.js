@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import PlacesPage from './PlacesPage';
+import TestPage from './TestPage';
 import NotFoundPage from './NotFoundPage';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" component={LoginPage} />
 					<Route path="/places" component={PlacesPage} />
+					<Route path="/test" component={TestPage} />
 					<Route component={NotFoundPage} />
 				</Switch>
 			</Router>

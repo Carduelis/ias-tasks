@@ -1,12 +1,15 @@
 import { types, getEnv } from 'mobx-state-tree';
 import { BookStore } from './BookStore';
-// import { CartStore } from './CartStore';
+import { TicketStore } from './TicketStore';
 // import { ViewStore } from './ViewStore';
 
 export const MainStore = types
-	.model('ShopStore', {
+	.model('MainStore', {
 		bookStore: types.optional(BookStore, {
 			books: {}
+		}),
+		ticketStore: types.optional(TicketStore, {
+			tickets: []
 		})
 		// cart: types.optional(CartStore, {
 		// 	entries: []

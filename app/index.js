@@ -15,6 +15,8 @@ const store = MainStore.create(
 	}
 );
 
+window.store = store;
+
 const history = {
 	snapshots: observable.shallowArray(),
 	actions: observable.shallowArray(),
