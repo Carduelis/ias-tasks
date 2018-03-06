@@ -7,7 +7,7 @@ import MdArrowForward from 'react-icons/lib/md/arrow-forward';
 // import Loader from '../components/Loader';
 // import Input from '../components/Input';
 import Button from '../components/Button';
-import { User } from '../models';
+// import { User } from '../models';
 
 @inject('store')
 @observer
@@ -26,8 +26,8 @@ class LoginPage extends Component {
 			}
 		};
 		console.log(this.props);
-		const user = User.create();
-		console.log(user.toJSON());
+		// const user = User.create();
+		// console.log(user.toJSON());
 		return (
 			<div className="login-page">
 				<div className="logo-wrapper">

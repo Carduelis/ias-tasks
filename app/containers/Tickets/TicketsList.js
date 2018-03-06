@@ -7,7 +7,7 @@ import { Message, Label } from '../../components/UI';
 class TicketsList extends Component {
 	render() {
 		const { ticketStore } = this.props;
-		const { tickets } = ticketStore;
+		const { tickets, sortedTicketsAndGroups } = ticketStore;
 		console.log(tickets);
 		if (tickets.length === 0) {
 			return <Message type="info" text="Нет задач" />;
@@ -20,7 +20,9 @@ class TicketsList extends Component {
 					<Label label="В работе" value={ticketStore.getTotal('underway')} />
 				</div>
 				<div className="tickets-list">
-					{tickets.map(ticket => <Ticket key={ticket.id} model={ticket} />)}
+					{sortedTicketsAndGroups.map(ticket =>
+						<Ticket key={ticket.id} model={ticket} />
+					)}
 				</div>
 			</div>
 		);

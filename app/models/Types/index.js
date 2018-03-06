@@ -10,6 +10,9 @@ const ticketLifecycle = types.enumeration('TicketLifecycle', [
 	'cancelled',
 	'rejected'
 ]);
+
 export { state, ticketLifecycle };
 
 // export * from './state';
+//
+//

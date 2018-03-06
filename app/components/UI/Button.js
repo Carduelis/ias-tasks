@@ -35,7 +35,10 @@ class Button extends Component {
 				{...attrs}
 			>
 				<Ink />
-				{props.icon}
+				{props.icon &&
+					<span className="btn-icon">
+						{props.icon}
+					</span>}
 				{props.loading && <span className="loading-bar" />}
 				{props.label &&
 					<span className="btn-label">
@@ -48,11 +51,11 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-	submit: PropTypes.boolean,
+	submit: PropTypes.bool,
 	customClasses: PropTypes.arrayOf(PropTypes.string),
 	size: PropTypes.oneOf(['lg', 'sm']),
-	bordered: PropTypes.boolean,
-	loading: PropTypes.boolean,
+	bordered: PropTypes.bool,
+	loading: PropTypes.bool,
 	label: PropTypes.string,
 	icon: PropTypes.element
 };

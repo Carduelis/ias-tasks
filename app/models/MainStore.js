@@ -9,7 +9,8 @@ export const MainStore = types
 			books: {}
 		}),
 		ticketStore: types.optional(TicketStore, {
-			tickets: []
+			tickets: [],
+			groups: []
 		})
 		// cart: types.optional(CartStore, {
 		// 	entries: []

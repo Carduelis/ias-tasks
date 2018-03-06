@@ -1,14 +1,26 @@
 import { types } from 'mobx-state-tree';
 import { TicketModel } from './TicketModel';
+import { TicketGroupModel } from './TicketGroupModel';
 import { uniqId } from '../helpers';
 
 export const TicketStore = types
 	.model('TicketStore', {
-		tickets: types.array(TicketModel)
+		tickets: types.array(TicketModel),
+		groups: types.array(TicketGroupModel)
 	})
 	.views(self => ({
 		get total() {
 			return self.tickets.length;
+		},
+		get standaloneTickets() {
+			return self.tickets.filter(ticket => !ticket.linkedBy);
+		},
+		getTicketByIndex(index) {
+			return self.tickets.find(item => item.index === index);
+		},
+		get sortedTicketsAndGroups() {
+			const concatenated = [...self.standaloneTickets, ...self.groups];
+			return concatenated.sort(item => -item.index);
 		},
 		getTotal(key) {
 			return self.tickets.filter(ticket => ticket.lifecycle === key).length;
@@ -32,7 +44,18 @@ export const TicketStore = types
 				index: 1 + self.maxIndex
 			});
 		}
+		function addGroup(ticketModel, ticketTargetModel) {
+			self.groups.push({
+				id: uniqId(),
+				tickets: [ticketModel.id, ticketTargetModel.id]
+			});
+		}
+		function removeTicket(model) {
+			self.tickets.remove(model);
+		}
 		return {
+			removeTicket,
+			addGroup,
 			addTicket
 		};
 	});
