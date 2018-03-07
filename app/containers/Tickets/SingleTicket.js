@@ -4,15 +4,13 @@ import ProtocolItem from './ProtocolItem';
 import ReportPart from './ReportPart';
 
 @observer
-class GroupedTicket extends Component {
+class SindleTicket extends Component {
 	render() {
 		const { model } = this.props;
 		return (
-			<div className="group-ticket">
+			<div className="single-ticket">
 				<div className="ticket-holder">
-					{model.tickets.map(ticketModel =>
-						<ProtocolItem key={ticketModel.id} model={ticketModel} />
-					)}
+					<ProtocolItem model={model} />
 				</div>
 				<div className="report-holder">
 					<ReportPart model={model} />
@@ -22,4 +20,4 @@ class GroupedTicket extends Component {
 	}
 }
 
-export default GroupedTicket;
+export default SindleTicket;

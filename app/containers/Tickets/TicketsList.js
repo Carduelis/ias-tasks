@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Ticket from './Ticket';
+import SingleTicket from './SingleTicket';
 import GroupedTicket from './GroupedTicket';
 import { Message, Label } from '../../components/UI';
 
@@ -23,7 +23,7 @@ class TicketsList extends Component {
 				<div className="tickets-list">
 					{sortedTicketsAndGroups.map(ticket => {
 						if (ticket.$treenode.type.name === 'Ticket') {
-							return <Ticket key={ticket.id} model={ticket} />;
+							return <SingleTicket key={ticket.id} model={ticket} />;
 						} else {
 							return <GroupedTicket key={ticket.id} model={ticket} />;
 						}

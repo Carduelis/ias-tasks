@@ -3,13 +3,19 @@
 	.ticket {
 	}
 }
-.ticket-holder {
+.single-ticket,
+.group-ticket {
 	margin: 1.5rem 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	> .ticket {
+	> .ticket-holder {
 		flex-basis: 50%;
+		.ticket + .ticket {
+			position: relative;
+			margin: 0.5rem 0;
+			box-shadow: 0 2px @brad -@brad/2 rgba(0, 0, 0, .2);
+		}
 	}
 }
 .group-ticket {
