@@ -45,16 +45,22 @@ export const TicketStore = types
 			});
 		}
 		function addGroup(ticketModel, ticketTargetModel) {
-			self.groups.push({
+			const groupJSON = {
 				id: uniqId(),
 				tickets: [ticketModel.id, ticketTargetModel.id]
-			});
+			};
+			self.groups.push(groupJSON);
+			return groupJSON.id;
 		}
 		function removeTicket(model) {
 			self.tickets.remove(model);
 		}
+		function removeGroup(model) {
+			self.groups.remove(model);
+		}
 		return {
 			removeTicket,
+			removeGroup,
 			addGroup,
 			addTicket
 		};

@@ -67,17 +67,41 @@ export const TicketModel = types
 				if (targetGroup) {
 					// we need to find a group and add to it
 					targetGroup.addTicket(self);
+
+					self.linkGroup(targetGroup.id);
 				} else {
 					// we need to create new group and add both tickets to it
-					self.ticketStore.addGroup(self, targetTicket);
+					const groupId = self.ticketStore.addGroup(self, targetTicket);
+
+					// move to group-afterCreate
+					targetTicket.linkGroup(groupId);
+					self.linkGroup(groupId);
 				}
 			}
 		}
+		function linkGroup(groupId) {
+			self.linkedBy = groupId;
+		}
 		function unlink() {
-			self.linkedBy = null;
+			console.log('length', self.linkedBy.tickets.length);
+			if (self.linkedBy.tickets.length === 2) {
+				// there are two tickets in group, we need destroy it
+				self.ticketStore.removeGroup(self.linkedBy);
+			} else {
+				// let n = null;
+				// self.linkedBy.tickets.forEach((ticket, i) => {
+				// 	if (ticket.linkedBy.id === self.linkedBy.id) {
+				// 		n = i;
+				// 	}
+				// });
+				// self.linkedBy.tickets.splice(n, 1);
+				self.linkedBy.removeTicket(self);
+				self.linkedBy = null;
+			}
 		}
 		return {
 			rename,
+			linkGroup,
 			remove,
 			linkTo,
 			unlink,

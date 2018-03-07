@@ -19,23 +19,31 @@ class Ticket extends Component {
 			icon: model.linkedBy ? <FaChainBroken /> : <FaChain />
 		};
 		return (
-			<div className="ticket">
-				<div className="ticket-index">
-					<span>
-						{model.index}
-					</span>
+			<div className="ticket-holder">
+				<div className="ticket">
+					<div className="ticket-index">
+						<span>
+							{model.index}
+						</span>
+					</div>
+					<div className="title">
+						Пункт протокола #{model.index}
+					</div>
+					<div className="ticket-link">
+						<Button {...linkBtnProps} />
+					</div>
+
+					<Button handleClick={() => model.remove()} label="Удалить" />
+
+					<DueDate date={model.date} />
+					<PersonInCharge>
+						{model.personInCharge}
+					</PersonInCharge>
 				</div>
-				<div className="title">
-					Пункт протокола #{model.index}
-				</div>
+
 				<div className="ticket-reports">
 					<ReportFork model={model} />
 				</div>
-				<div className="ticket-link">
-					<Button {...linkBtnProps} />
-				</div>
-
-				<Button handleClick={() => model.remove()} label="Удалить" />
 				<div className="ticket-send">
 					<Button
 						handleClick={() => alert('Пока не работает')}
@@ -43,10 +51,6 @@ class Ticket extends Component {
 						label="Отправить в Министерство"
 					/>
 				</div>
-				<DueDate date={model.date} />
-				<PersonInCharge>
-					{model.personInCharge}
-				</PersonInCharge>
 			</div>
 		);
 	}

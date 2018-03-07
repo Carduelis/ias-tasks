@@ -1,8 +1,21 @@
 .tickets-list {
 	padding: 0 1.5rem;
 	.ticket {
-		margin: 1.5rem 0;
 	}
+}
+.ticket-holder {
+	margin: 1.5rem 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	> .ticket {
+		flex-basis: 50%;
+	}
+}
+.group-ticket {
+	background-color: @palette-Indigo-50;
+	padding: 1rem;
+	margin: 0 -1rem;
 }
 .ticket {
 	@indexSize: 4rem;
@@ -63,7 +76,7 @@
 }
 
 .ticket-send {
-	position: absolute;
+	// position: absolute;
 	right: 0;
 	z-index: 2;
 	top: 0;

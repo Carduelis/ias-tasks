@@ -87,9 +87,9 @@ module.exports = {
 				NODE_ENV: JSON.stringify('development'),
 				PLATFORM_ENV: JSON.stringify('web')
 			}
-		}),
-		new webpack.optimize.OccurrenceOrderPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.NamedModulesPlugin()
+		})
+		// new webpack.optimize.OccurrenceOrderPlugin(),
+		// new webpack.NoEmitOnErrorsPlugin(),
+		// new webpack.NamedModulesPlugin()
 	]
 };
