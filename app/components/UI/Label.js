@@ -6,12 +6,14 @@ class Label extends Component {
 		const { type = 'default', label, value } = this.props;
 		return (
 			<div className={`label label-${type}`}>
-				<span className="label-text">
-					{label}
-				</span>
-				<span className="label-value">
-					{value}
-				</span>
+				<div className="label-content">
+					<span className="label-text">
+						{label}
+					</span>
+					<span className="label-value">
+						{value}
+					</span>
+				</div>
 			</div>
 		);
 	}
